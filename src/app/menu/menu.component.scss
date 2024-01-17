@@ -1,0 +1,55 @@
+p{
+    display: flex;
+    justify-content: flex-start;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2.2em;
+
+}
+
+header button{
+    display: flex;
+    justify-content: flex-end;
+    background-color: blue; /* Color de fondo verde */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Relleno interno */
+    text-align: center; /* Alineación del texto al centro */
+    text-decoration: none; /* Sin decoración de texto */
+    
+    font-size: 16px; /* Tamaño de fuente */
+    margin-left: auto; /* Mover a la derecha del contenedor */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s;
+    
+    
+}
+
+nav{
+    flex-direction: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding-bottom: 1px;
+    margin-right: auto;
+    
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    justify-content: flex-start;
+    text-decoration: none;
+    
+}
+
+header li{
+    margin-right: 6px;
+}
+
+header li a{
+    margin-inline-start: 19px;
+    text-decoration: none;
+    color: rgb(0, 162, 255);
+}
+

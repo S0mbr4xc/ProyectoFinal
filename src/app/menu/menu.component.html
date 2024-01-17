@@ -1,0 +1,13 @@
+<header>
+    <p>E-MARKET</p>
+    <nav>
+        <ul>
+            <li *ngFor="let link of paginas">
+                <a href="#" [routerLink]="link.path">{{link.titulo}}</a>
+            </li>
+            <button>Ingresar</button>
+        </ul>
+        
+    </nav>
+    
+</header>
