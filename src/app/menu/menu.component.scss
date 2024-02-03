@@ -1,55 +1,155 @@
+.principio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+header button:nth-child(2) {
+  margin-left: -5px; /* Ajusta el margen izquierdo negativo según tus necesidades */
+}
+
+.info-usuario {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 70px; /* Ajusta la posición según tus necesidades */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 400px; /* Ajusta el ancho según tus necesidades */
+  box-sizing: border-box; /* Incluye el borde en el ancho total */
+  margin-right: 30px;
+}
+
+.info-usuario p{
+  font-size: 12px;
+}
+
+.info-usuario button{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.principio:hover .info-usuario {
+  display: flex;
+}
 p{
-    display: flex;
-    justify-content: flex-start;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 2.2em;
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Black Ops One', system-ui;
+  color: rgb(40, 67, 124);
+  font-size: 44px; /* Ajusta el tamaño de la fuente */
+  letter-spacing: 2px; /* Ajusta el espaciado entre letras */
+  text-transform: uppercase; /* Cambia a mayúsculas */
+  font-weight: bold; /* Hace la fuente negrita */
+  margin: 0; /* Elimina el margen por defecto */
+  padding: 0; 
 
 }
 
-header button{
-    display: flex;
-    justify-content: flex-end;
-    background-color: blue; /* Color de fondo verde */
-    color: white; /* Texto blanco */
-    border: none; /* Sin borde */
-    padding: 10px 20px; /* Relleno interno */
-    text-align: center; /* Alineación del texto al centro */
-    text-decoration: none; /* Sin decoración de texto */
-    
-    font-size: 16px; /* Tamaño de fuente */
-    margin-left: auto; /* Mover a la derecha del contenedor */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s;
-    
-    
+header button {
+  display: flex;
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-size: 1em;
+  margin-right: 10px; /* Ajusta el margen derecho según tus necesidades */
 }
 
-nav{
-    flex-direction: center;
-    font-weight: bold;
-    font-size: 1.1em;
-    padding-bottom: 1px;
-    margin-right: auto;
-    
+nav {
+  display: flex;
+  justify-content: space-between; /* Esto alinea el ul y el buscador a los extremos */
+  align-items: center; /* Esto centra los elementos verticalmente */
+  padding: 10px; /* Añade un poco de espacio interno para mejor estética */
+  font-family: 'Gaegu', sans-serif;
 }
 
 header ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    justify-content: flex-start;
-    text-decoration: none;
-    
+list-style: none;
+display: flex;
+padding: 0;
+justify-content: flex-start;
+text-decoration: none;
+font-family: 'Gaegu', sans-serif;
+
 }
 
-header li{
-    margin-right: 6px;
+header li {
+position: relative; /* Establece la referencia para el submenú absoluto */
+margin-right: 76px;
+font-family: "Archivo Black", sans-serif;
+font-size: 18px;
 }
 
 header li a{
-    margin-inline-start: 19px;
-    text-decoration: none;
-    color: rgb(0, 162, 255);
+margin-inline-start: 19px;
+text-decoration: none;
+color: rgb(40, 67, 124);
 }
 
+.submenu {
+display: none; /* Oculta inicialmente el submenú */
+position: absolute; /* Posiciona el submenú en relación con su elemento padre li */
+background-color: #fff; /* Fondo del submenú, ajusta según tu diseño */
+box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Sombra opcional para el submenú */
+border-radius: 5px; /* Bordes redondeados para el submenú */
+top: 100%; /* Posiciona el submenú justo debajo del elemento del menú */
+left: 0;
+}
+
+/* Estilo para los elementos de la lista del submenú */
+.submenu li {
+white-space: nowrap; /* Asegura que los textos de los submenús no se rompan */
+}
+
+/* Estilo para los enlaces del submenú */
+.submenu a {
+display: block;
+padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+color: #333; /* Color de texto del submenú */
+text-decoration: none; /* Quita el subrayado de los enlaces */
+}
+
+/* Muestra el submenú al pasar el mouse sobre el elemento de la lista */
+header li:hover .submenu {
+display: block;
+}
+
+#searchForm {
+  display: flex;
+  align-items: center;
+  background-color: #a0cefc; /* El color de fondo debe coincidir con el de la imagen */
+  padding: 10px 15px;
+  border-radius: 20px; /* Bordes redondeados para el formulario */
+  border: none; /* Eliminar el borde si hay alguno */
+}
+
+#searchForm .fa-magnifying-glass {
+  color: #000000; /* El color del ícono debe coincidir con el de la imagen */
+  font-size: 2.0em; /* Ajusta el tamaño del ícono según sea necesario */
+  margin-right: 10px; /* Espacio entre el ícono y el campo de texto */
+}
+
+#siteSearch {
+  flex-grow: 1;
+  border: none;
+  background-color: transparent; /* Fondo transparente para el input */
+  outline: none;
+  color: #000;
+  font-size: 1em;
+  width: 100%; /* Asegúrate de que el input ocupe todo el espacio disponible */
+}
+
+#siteSearch::placeholder {
+  color: #5f6368;
+}

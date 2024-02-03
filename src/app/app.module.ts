@@ -6,17 +6,29 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ServicioClienteComponent } from './pages/servicio-cliente/servicio-cliente.component';
+import { FooterComponent } from './footer/footer.component';
+import { TiendaComponent } from './pages/tienda/tienda.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     InicioComponent,
-    ServicioClienteComponent
+    ServicioClienteComponent,
+    FooterComponent,
+    TiendaComponent,
+    LoginComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,16 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Usa el 100% de la altura de la pantalla */
+  }
+  
+  .content {
+    flex: 1; /* Ocupa el espacio disponible */
+    /* Más estilos para tu contenido principal si son necesarios */
+  }
+  .archivo-black-regular {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  

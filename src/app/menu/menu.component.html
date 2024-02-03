@@ -1,13 +1,49 @@
+
 <header>
-    <p>E-MARKET</p>
+    <div class="principio">
+      <p>E-MARKET</p>
+      <button (click)="toggleInfoUsuario()">Cuenta</button>
+      <div class="info-usuario" *ngIf="mostrarInfoUsuario" (mouseleave)="toggleInfoUsuario()">
+        <p>Has iniciado sesión como: {{ obtenerUsuarioAutenticado().correo }}</p>
+        <button (click)="irLogin()">Iniciar Sesion</button>
+        <button (click)="cerrarSesion()">Cerrar Sesión</button>
+      </div>
+    </div>
     <nav>
-        <ul>
-            <li *ngFor="let link of paginas">
-                <a href="#" [routerLink]="link.path">{{link.titulo}}</a>
-            </li>
-            <button>Ingresar</button>
-        </ul>
-        
-    </nav>
-    
+      <ul>
+          <li *ngFor="let link of paginas" 
+              (mouseenter)="link.titulo === 'Tienda' ? mostrarListaCategorias() : null" 
+              (mouseleave)="ocultarListaCategorias()">
+              <a href="#" [routerLink]="link.path">{{ link.titulo }}</a>
+
+              <!-- Aplica la lógica solo para el elemento "Tienda" -->
+              <ul *ngIf="mostrarCategorias && link.titulo === 'Tienda'" class="submenu">
+                  <li *ngFor="let categoria of categorias">
+                      <a href="#" [routerLink]="'/categoria/' + categoria.codigo">{{ categoria.nombre }}</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <form id="searchForm">
+            
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <span class="material-symbols-outlined">
+                search
+                </span>
+                <style>
+                    .material-symbols-outlined {
+                      font-variation-settings:
+                      'FILL' 0,
+                      'wght' 400,
+                      'GRAD' 0,
+                      'opsz' 24
+                    }
+                    </style>
+            <input type="search" id="siteSearch" name="q" placeholder="Busca productos" aria-label="Buscar productos">
+
+          </form>
+  </nav>
 </header>
+
+
+

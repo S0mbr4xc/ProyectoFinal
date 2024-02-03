@@ -1,0 +1,150 @@
+/* Estilos generales */
+.lista-tareas {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  .lista-tareas h2 {
+    font-size: 1.9rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  
+  .tareas-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Organiza las tareas en columnas responsivas */
+    gap: 20px; /* Espacio entre las tareas */
+  }
+  
+  .tarea {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .imagen-tarea {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+  }
+  
+  .informacion-tarea h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  
+  .informacion-tarea p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #777;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  /* Estilos para botones */
+  button, #archivo, .boton-personalizado {
+    background-color: rgb(135, 187, 255);
+    color: #000000; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 100%; /* Ancho 100% en pantallas pequeñas */
+    height: 55px;
+    margin-top: 15px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1em;
+  }
+  
+  /* Media Query para pantallas más pequeñas */
+  @media only screen and (max-width: 768px) {
+    .tareas-container {
+      grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas pequeñas */
+    }
+  }
+
+ /* Estilos para la sección de información adicional */
+.informacion-adicional {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  /* Estilos para las imágenes del producto */
+  .imagenes-producto {
+    width: 60%;
+    height: 80vh;
+    display: flex;
+    flex-wrap: wrap; /* Asegura que las imágenes se envuelvan en una fila */
+  }
+  
+  .imagen-producto {
+    width: 48%; /* Ajusta el ancho según sea necesario */
+    height: 48vh; /* Ajusta la altura según sea necesario */
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+  }
+
+  .imagen-fila {
+    width: 100%; /* Ocupa todo el ancho de la fila */
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Estilos para los detalles del producto */
+  .detalle-producto {
+    width: 35%;
+  }
+  
+  .detalle-producto h2 {
+    font-size: 24px;
+  }
+  
+  .detalle-producto p {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para los botones de acción */
+  .acciones button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Estilos para la lista de descripciones del artículo */
+  .sobre-el-articulo {
+    margin-top: 20px;
+  }
+  
+  .sobre-el-articulo h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .sobre-el-articulo ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sobre-el-articulo li {
+    margin-bottom: 5px;
+  }
+  
+  /* Estilos para el botón de cerrar */
+  .informacion-adicional button:last-child {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  

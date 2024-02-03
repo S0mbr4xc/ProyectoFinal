@@ -1,0 +1,64 @@
+h2 ,p{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contenedor-grande {
+  max-width: 67%; /* O el ancho que desees */
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 20px; /* Espaciado alrededor del contenedor */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para la tarjeta grande */
+  border-radius: 20px; /* Bordes redondeados para la tarjeta grande */
+  background-color: #bbdcf1; /* Color de fondo similar al de la imagen */
+  
+  overflow: hidden; /* Asegura que todo el contenido se mantenga dentro de los bordes redondeados */
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  color: rgb(34, 59, 141);
+}
+
+.contenedor-tarjetas {
+  display: flex; /* Alinea las tarjetas horizontalmente */
+  flex-wrap: wrap; /* Permite que las tarjetas pasen a la siguiente línea si no hay espacio */
+  gap: 25px; /* Espacio entre las tarjetas */
+  justify-content: flex-start; /* Alinea los elementos al inicio */
+  align-items: stretch; /* Asegura que todas las tarjetas tengan la misma altura */
+  
+}
+
+.tarjeta {
+  flex: 0 0 auto; /* Las tarjetas no crecerán o encogerán, y serán automáticas en base a su contenido */
+  width: 390px; /* Ancho de las tarjetas */
+  height: 400px; /* Altura de las tarjetas */
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para las tarjetas */
+  border-radius: 10px; /* Bordes redondeados para las tarjetas */
+  display: flex; /* Habilita flexbox para la organización interna de la tarjeta */
+  flex-direction: column; /* Organiza los elementos internos en columna */
+  background-color: rgb(230, 245, 255);
+  font-family: "Archivo Black", sans-serif;
+  font-size: 0.8em;
+  color: rgb(40, 67, 124);
+}
+
+.tarjeta img {
+  width: 100%; /* Asegura que la imagen cubra todo el ancho de la tarjeta */
+  height: 70%; /* Mantiene la proporción de la imagen */
+}
+
+.descripcion {
+  
+  
+  padding: 15px; /* Espaciado interno para el texto */
+  text-align: center; /* Centra el texto */
+  margin-top: auto; /* Empuja la descripción al fondo de la tarjeta */
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center; /* Centra los elementos de paginación */
+  padding: 20px; /* Espaciado alrededor de la paginación */
+  list-style: none; /* Elimina los estilos de lista */
+}
+
+/* Estilos adicionales para la paginación pueden ser añadidos aquí */
+/* ... */
