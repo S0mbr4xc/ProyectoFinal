@@ -1,1 +1,14 @@
-<p>carrito works!</p>
+<h1>Carrito de compras</h1>
+
+<p>El usuario es: {{personaAutenticada}}</p>
+<p>codigo es: {{codigoAutenticada}}</p>
+<table>
+  <tr>
+    <th>Nombre del Producto</th>
+    <th>Precio</th>
+  </tr>
+  <tr *ngFor="let prod of productos">
+    <td>{{prod.nombre}}</td>
+    <td>{{prod.precio}}</td>
+  </tr>
+</table>

@@ -87,4 +87,8 @@ mostrarRegistro() {
     this.mostrarInfoUsuario = !this.mostrarInfoUsuario;
   }
 
+  irCarrito(){
+    this.router.navigate(["paginas/carrito"])
+  }
+
 }

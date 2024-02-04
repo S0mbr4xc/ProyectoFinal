@@ -4,12 +4,14 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { ServicioClienteComponent } from './pages/servicio-cliente/servicio-cliente.component';
 import { TiendaComponent } from './pages/tienda/tienda.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 const routes: Routes = [
   {path : "paginas/inicio", component: InicioComponent},
   {path: "paginas/servicio-cliente", component: ServicioClienteComponent},
   {path: "paginas/tienda", component: TiendaComponent},
-  {path: "paginas/login", component: LoginComponent}
+  {path: "paginas/login", component: LoginComponent},
+  {path: "paginas/carrito", component: CarritoComponent}
 ];
 
 @NgModule({
