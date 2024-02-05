@@ -1,14 +1,27 @@
 <h1>Carrito de compras</h1>
-
-<p>El usuario es: {{personaAutenticada}}</p>
-<p>codigo es: {{codigoAutenticada}}</p>
-<table>
-  <tr>
-    <th>Nombre del Producto</th>
-    <th>Precio</th>
-  </tr>
-  <tr *ngFor="let prod of productos">
-    <td>{{prod.nombre}}</td>
-    <td>{{prod.precio}}</td>
-  </tr>
-</table>
+  <div class="xd">
+    <p>Usted ha ingresado como: {{personaAutenticada}}</p>
+  </div>
+<div class="carrito-container">
+  <!-- Inicio del loop *ngFor -->
+  <div class="detalle-carrito" *ngFor="let detalle of carritos.detalle">
+    <div class="producto-info">
+      <!-- Añade la etiqueta img para mostrar la imagen -->
+      <img class="imagen-producto" [src]="detalle.producto.url" alt="Imagen del producto">
+      <p>Nombre del Producto: <span>{{ detalle.producto.nombre }}</span></p>
+      <p>Precio: <span>{{ detalle.producto.precio | currency:'USD':'symbol' }}</span></p>
+      <p>Iva: <span>{{ detalle.iva | currency:'USD':'symbol' }}</span></p>
+      <p>Subtotal: <span>{{ detalle.subtotal | currency:'USD':'symbol' }}</span></p>
+    </div>
+    <div class="producto-cantidad">
+      <label for="cantidad-{{detalle.id}}">Cantidad:</label>
+      <input type="number" id="cantidad-{{detalle.id}}" [(ngModel)]="cantidadesSeleccionadas[detalle.id]" (change)="actualizarTotales(detalle)">
+    </div>
+    <div class="producto-total">
+      <p>Total: <span>{{ detalle.total | currency:'USD':'symbol' }}</span></p>
+    </div>
+  </div>
+</div>
+<div class="j">
+<button class="boton-pagar">Ir a Pagar</button>
+</div>

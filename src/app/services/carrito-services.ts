@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { enviroment } from "../enviroments/enviroment";
 import { Persona } from "../domain/persona";
+import { Producto } from "../domain/producto";
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +20,10 @@ export class CarritoServices {
         return this.http.get<any>(url)
     }
 
-    addProductoAlCarrito(producto:any, codigo:number){
-        let url = `${enviroment.WS_PATH}/carrito/lista/agregar-producto/${codigo}`
-        return this.http.post<any>(url,producto)
-    }
+    agregarProductoACarrito(producto: Producto, codigo: number) {
+        let url = `${enviroment.WS_PATH}/carrito/agregar-producto/${codigo}`;
+        return this.http.post<any>(url, producto);
+      }
+
+   
 }
