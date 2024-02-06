@@ -1,27 +1,38 @@
-<h1>Carrito de compras</h1>
-  <div class="xd">
-    <p>Usted ha ingresado como: {{personaAutenticada}}</p>
+<div class="contenedor">
+  <div class="izquierda">
+    <h1>Carrito de compras</h1>
+    <div class="xd">
+      <p>Usted ha ingresado como: {{personaAutenticada}}</p>
+    </div>
+    <div class="carrito-container">
+      <!-- Inicio del loop *ngFor -->
+      <div class="detalle-carrito" *ngFor="let detalle of carritos.detalle">
+        <div class="producto-info">
+          <!-- Añade la etiqueta img para mostrar la imagen -->
+          <img class="imagen-producto" [src]="detalle.producto.url" alt="Imagen del producto">
+          <p>Nombre del Producto: <span>{{ detalle.producto.nombre }}</span></p>
+          <p>Precio: <span>{{ detalle.producto.precio | currency:'USD':'symbol' }}</span></p>
+          <p>Iva: <span>{{ detalle.iva | currency:'USD':'symbol' }}</span></p>
+          <p>Subtotal: <span>{{ detalle.subtotal | currency:'USD':'symbol' }}</span></p>
+        </div>
+        <div class="producto-cantidad">
+          <label for="cantidad-{{detalle.id}}">Cantidad:</label>
+          <input type="number" id="cantidad-{{detalle.id}}" [(ngModel)]="cantidadesSeleccionadas[detalle.id]" (change)="actualizarTotales(detalle)">
+        </div>
+        <div class="producto-total">
+          <p>Total: <span>{{ detalle.total | currency:'USD':'symbol' }}</span></p>
+        </div>
+      </div>
+    </div>
   </div>
-<div class="carrito-container">
-  <!-- Inicio del loop *ngFor -->
-  <div class="detalle-carrito" *ngFor="let detalle of carritos.detalle">
-    <div class="producto-info">
-      <!-- Añade la etiqueta img para mostrar la imagen -->
-      <img class="imagen-producto" [src]="detalle.producto.url" alt="Imagen del producto">
-      <p>Nombre del Producto: <span>{{ detalle.producto.nombre }}</span></p>
-      <p>Precio: <span>{{ detalle.producto.precio | currency:'USD':'symbol' }}</span></p>
-      <p>Iva: <span>{{ detalle.iva | currency:'USD':'symbol' }}</span></p>
-      <p>Subtotal: <span>{{ detalle.subtotal | currency:'USD':'symbol' }}</span></p>
+  <div class="derecha">
+    <div class="cabecera">
+      <p>Subtotal: {{ sumaSubtotales() | currency:'USD':'symbol' }}</p>
+      <p>IVA: {{ sumaIvas() | currency:'USD':'symbol' }}</p>
+      <p>Total: {{ sumaTotales() | currency:'USD':'symbol' }}</p>
     </div>
-    <div class="producto-cantidad">
-      <label for="cantidad-{{detalle.id}}">Cantidad:</label>
-      <input type="number" id="cantidad-{{detalle.id}}" [(ngModel)]="cantidadesSeleccionadas[detalle.id]" (change)="actualizarTotales(detalle)">
-    </div>
-    <div class="producto-total">
-      <p>Total: <span>{{ detalle.total | currency:'USD':'symbol' }}</span></p>
+    <div class="botones-container">
+      <button class="boton-pagar" (click)="crearCabeceraYAsignarADetalles()">Ir a Pagar</button>
     </div>
   </div>
-</div>
-<div class="j">
-<button class="boton-pagar">Ir a Pagar</button>
 </div>

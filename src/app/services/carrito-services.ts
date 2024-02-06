@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { enviroment } from "../enviroments/enviroment";
 import { Persona } from "../domain/persona";
 import { Producto } from "../domain/producto";
+import { Cabecera } from "../domain/cabecera";
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,11 @@ export class CarritoServices {
         let url = `${enviroment.WS_PATH}/carrito/agregar-producto/${codigo}`;
         return this.http.post<any>(url, producto);
       }
+
+      crearCabeceraYAsignarADetalles(codigo: number, cabecera: Cabecera) {
+        const url = `${enviroment.WS_PATH}/carrito/cabeceraAdd/${codigo}`;
+        return this.http.post<any>(url, cabecera);
+    }
 
    
 }

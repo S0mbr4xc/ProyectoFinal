@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Cabecera } from 'src/app/domain/cabecera';
 import { Carrito } from 'src/app/domain/carrito';
 import { Detalle } from 'src/app/domain/detalle';
 import { Persona } from 'src/app/domain/persona';
 import { Producto } from 'src/app/domain/producto';
 import { AuthService } from 'src/app/services/auth-service';
 import { CarritoServices } from 'src/app/services/carrito-services';
+import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-carrito',
@@ -24,6 +27,10 @@ export class CarritoComponent implements OnInit{
   iva: number = 0;
   subtotal: number = 0;
   total: number = 0;
+  fechaa :any
+  fechaAngular = new Date();
+  fechaFormateada = formatDate(this.fechaAngular, 'yyyy-MM-dd', 'en-US');
+  
   cantidadesSeleccionadas: { [detalleId: string]: number } = {};
 
   constructor(private carritoServices: CarritoServices, private authService : AuthService) {}
@@ -39,12 +46,42 @@ export class CarritoComponent implements OnInit{
         this.carritos = response;
         this.inicializarCantidadesSeleccionadas()
         console.log("Carritos obtenidos:", this.carritos);
+        this.fechaa = new Date()
+        console.log(this.fechaa)
       },
       error => {
         console.error("Error al obtener carritos:", error);
       }
     );
   }
+
+  crearCabeceraYAsignarADetalles() {
+    // Crea un objeto Cabecera con los datos necesarios
+    const cabecera: Cabecera = {
+        fecha: new Date(), // Puedes ajustar la fecha según tus necesidades
+        subtotal: this.subtotal,
+        iva: this.iva,
+        total: this.total,
+        persona: this.personaA,
+        detalle: []
+         // Puedes dejarlo vacío si aún no tienes detalles
+    };
+    console.log(cabecera)
+
+    // Llama al servicio para crear la cabecera y asignarla a detalles
+    this.carritoServices.crearCabeceraYAsignarADetalles(this.authService.getUsuarioAutenticado().codigo, cabecera).subscribe(
+        response => {
+            console.log("Cabecera creada y asignada a detalles:", response);
+            alert("PAGADO CON EXITO")
+
+            // Puedes realizar otras acciones después de la creación y asignación
+        },
+        error => {
+            console.error("Error al crear la cabecera y asignar a detalles:", error);
+            alert("No se pudo pagar, chiro.")
+        }
+    );
+}
 
   obtener() {
     this.persona.correo = this.emails;  // Asigna el correo a la propiedad correo de Persona
@@ -81,5 +118,33 @@ inicializarCantidadesSeleccionadas() {
     this.cantidadesSeleccionadas[detalle.id] = 0;
   });
 }
+
+sumaTotales(): number {
+  return (this.carritos.detalle as Detalle[])?.reduce((suma, detalle) => {
+    if (detalle.total !== undefined) {
+      suma += detalle.total;
+    }
+    return suma;
+  }, 0) || 0;
+}
+
+sumaIvas(): number {
+  return (this.carritos.detalle as Detalle[])?.reduce((suma, detalle) => {
+    if (detalle.iva !== undefined) {
+      suma += detalle.iva;
+    }
+    return suma;
+  }, 0) || 0;
+}
+
+sumaSubtotales(): number {
+  return (this.carritos.detalle as Detalle[])?.reduce((suma, detalle) => {
+    if (detalle.subtotal !== undefined) {
+      suma += detalle.subtotal;
+    }
+    return suma;
+  }, 0) || 0;
+}
+
 
 }
