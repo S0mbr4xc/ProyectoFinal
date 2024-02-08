@@ -9,6 +9,7 @@ import { Cabecera } from "../domain/cabecera";
     providedIn: 'root'
   })
 export class CarritoServices {
+    static codigoCabecera: number | undefined;
     constructor(private http : HttpClient){}
 
     getCarritosporUsuario(persona:Persona){
@@ -35,6 +36,15 @@ export class CarritoServices {
         let url = `${enviroment.WS_PATH}/carrito/eliminar-carrito/${codigo}`;
         return this.http.post<any>(url,codigo)
     }
+
+    setearCabecera(codigoCab : any){
+        let url = `${enviroment.WS_PATH}/carrito/sumar-detalles-cabecera/${codigoCab}`;
+        return this.http.get<any>(url)
+    }
+
+    setCodigoCabecera(codigo: number) {
+        CarritoServices.codigoCabecera = codigo;
+      }
 
    
 }

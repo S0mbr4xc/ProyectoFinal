@@ -31,6 +31,7 @@ export class CarritoComponent implements OnInit{
   total: number = 0;
   fechaa :any
   fechaAngular = new Date();
+  codigoCabecera : any
   fechaFormateada = formatDate(this.fechaAngular, 'yyyy-MM-dd', 'en-US');
   detallesConValores: any[] = [];
   
@@ -75,6 +76,11 @@ export class CarritoComponent implements OnInit{
     this.carritoServices.crearCabeceraYAsignarADetalles(this.authService.getUsuarioAutenticado().codigo, this.authService.getUsuarioAutenticado().codigo).subscribe(
         response => {
             console.log("Cabecera creada y asignada a detalles:", response);
+            this.codigoCabecera = response.codigo;
+            this.carritoServices.setCodigoCabecera(response.codigo);
+            this.carritoServices.setearCabecera(this.codigoCabecera).subscribe(response => {
+              // Resto del código
+          });
             alert("PAGADO CON EXITO")
             this.router.navigate(['paginas/mostrar-fac'])
             /*this.carritoServices.eliminarCarrito(this.authService.getUsuarioAutenticado().codigo).subscribe(
@@ -109,11 +115,16 @@ export class CarritoComponent implements OnInit{
     });
   }
 
+  SetearCab(){
+    
+  
+  }
+
   actualizarDetallesEnBackend(IdProductoID: number, cantidad: number, detalleId:number) {
     this.facturaService.actualizarDetalles(IdProductoID, cantidad, detalleId).subscribe(
       response => {
         console.log("Detalles actualizados correctamente en el backend:", response);
-        // Puedes realizar acciones adicionales después de actualizar los detalles
+        
       },
       error => {
         console.error("Error al actualizar los detalles en el backend:", error);
