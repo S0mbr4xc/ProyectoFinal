@@ -28,9 +28,9 @@
   </div>
   <div class="derecha">
     <div class="cabecera">
-      <p>Subtotal: {{ sumaSubtotales() | currency:'USD':'symbol' }}</p>
-      <p>IVA: {{ sumaIvas() | currency:'USD':'symbol' }}</p>
-      <p>Total: {{ sumaSubtotales()  +sumaIvas() | currency:'USD':'symbol' }}</p>
+      <p>Subtotal: {{ calcularSubtotalDetalles() | currency:'USD':'symbol' }}</p>
+      <p>IVA: {{ calcularIVADetalles() | currency:'USD':'symbol' }}</p>
+      <p>Total: {{ calcularTotalDetalles() | currency:'USD':'symbol' }}</p>
     </div>
     <div class="botones-container">
       <button class="boton-pagar" (click)="crearCabeceraYAsignarADetalles() ; SetearCab()">Ir a Pagar</button>

@@ -211,5 +211,36 @@ sumaSubtotales(): number {
   }, 0) || 0;
 }
 
+calcularTotalDetalles(): number {
+  let totalDetalles = 0;
+  if (this.carritos && this.carritos.detalle) {
+    this.carritos.detalle.forEach((detalle: any) => {
+      totalDetalles += detalle.total;
+    });
+  }
+  return totalDetalles;
+}
+
+calcularSubtotalDetalles(): number {
+  let subtotalDetalles = 0;
+  if (this.carritos && this.carritos.detalle) {
+    this.carritos.detalle.forEach((detalle: any) => {
+      subtotalDetalles += detalle.subtotal;
+    });
+  }
+  return subtotalDetalles;
+}
+
+// Función para calcular el total del IVA de los detalles
+calcularIVADetalles(): number {
+  let ivaDetalles = 0;
+  if (this.carritos && this.carritos.detalle) {
+    this.carritos.detalle.forEach((detalle: any) => {
+      ivaDetalles += detalle.iva;
+    });
+  }
+  return ivaDetalles;
+}
+
 
 }
