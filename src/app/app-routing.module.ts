@@ -5,13 +5,15 @@ import { ServicioClienteComponent } from './pages/servicio-cliente/servicio-clie
 import { TiendaComponent } from './pages/tienda/tienda.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
+import { MostrarFacComponent } from './pages/mostrar-fac/mostrar-fac.component';
 
 const routes: Routes = [
   {path : "paginas/inicio", component: InicioComponent},
   {path: "paginas/servicio-cliente", component: ServicioClienteComponent},
   {path: "paginas/tienda", component: TiendaComponent},
   {path: "paginas/login", component: LoginComponent},
-  {path: "paginas/carrito", component: CarritoComponent}
+  {path: "paginas/carrito", component: CarritoComponent},
+  {path: "paginas/mostrar-fac", component: MostrarFacComponent}
 ];
 
 @NgModule({

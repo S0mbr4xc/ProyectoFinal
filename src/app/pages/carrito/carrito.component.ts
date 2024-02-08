@@ -7,6 +7,8 @@ import { Producto } from 'src/app/domain/producto';
 import { AuthService } from 'src/app/services/auth-service';
 import { CarritoServices } from 'src/app/services/carrito-services';
 import { formatDate } from '@angular/common';
+import { Router } from '@angular/router';
+import { FacturaServices } from 'src/app/services/factura-services';
 
 
 @Component({
@@ -30,10 +32,11 @@ export class CarritoComponent implements OnInit{
   fechaa :any
   fechaAngular = new Date();
   fechaFormateada = formatDate(this.fechaAngular, 'yyyy-MM-dd', 'en-US');
+  detallesConValores: any[] = [];
   
   cantidadesSeleccionadas: { [detalleId: string]: number } = {};
 
-  constructor(private carritoServices: CarritoServices, private authService : AuthService) {}
+  constructor(private carritoServices: CarritoServices, private authService : AuthService, private router : Router , private facturaService : FacturaServices) {}
 
   personaAutenticada = this.authService.getUsuarioAutenticado().correo
   codigoAutenticada = this.authService.getUsuarioAutenticado().codigo
@@ -69,10 +72,20 @@ export class CarritoComponent implements OnInit{
     console.log(cabecera)
 
     // Llama al servicio para crear la cabecera y asignarla a detalles
-    this.carritoServices.crearCabeceraYAsignarADetalles(this.authService.getUsuarioAutenticado().codigo, cabecera).subscribe(
+    this.carritoServices.crearCabeceraYAsignarADetalles(this.authService.getUsuarioAutenticado().codigo, this.authService.getUsuarioAutenticado().codigo).subscribe(
         response => {
             console.log("Cabecera creada y asignada a detalles:", response);
             alert("PAGADO CON EXITO")
+            this.router.navigate(['paginas/mostrar-fac'])
+            /*this.carritoServices.eliminarCarrito(this.authService.getUsuarioAutenticado().codigo).subscribe(
+              response => {
+                  console.log("Carrito eliminado:", response);
+                  console.log("exitooooooo");
+              },
+              error => {
+                  console.error("Error al eliminar el carrito:", error);
+              }
+          );/*/
 
             // Puedes realizar otras acciones después de la creación y asignación
         },
@@ -96,6 +109,19 @@ export class CarritoComponent implements OnInit{
     });
   }
 
+  actualizarDetallesEnBackend(IdProductoID: number, cantidad: number, detalleId:number) {
+    this.facturaService.actualizarDetalles(IdProductoID, cantidad, detalleId).subscribe(
+      response => {
+        console.log("Detalles actualizados correctamente en el backend:", response);
+        // Puedes realizar acciones adicionales después de actualizar los detalles
+      },
+      error => {
+        console.error("Error al actualizar los detalles en el backend:", error);
+        // Maneja el error según sea necesario
+      }
+    );
+  }
+
   // Actualiza las cantidades y totales
   actualizarTotales(detalle: any) {
     const cantidadSeleccionada = this.cantidadesSeleccionadas[detalle.id] || 0;
@@ -107,17 +133,45 @@ export class CarritoComponent implements OnInit{
     detalle.iva = iva;
     detalle.subtotal = subtotal;
     detalle.total = total;
+    console.log(cantidadSeleccionada)
+    this.actualizarTotalesGlobales();
+    this.actualizarDetallesEnBackend(detalle.producto.codigo, cantidadSeleccionada, detalle.codigo);
+
+    this.iva = iva;
+    this.subtotal = subtotal;
+    this.total = total;
+
+    console.log(this.iva)
+    console.log(this.subtotal)
+    console.log(this.total)
+
+    const detalleConValor = {
+      id: detalle.producto.codigo,
+      iva: iva,
+      subtotal: subtotal,
+      total: total
+    };
+    this.detallesConValores.push(detalleConValor);
+    console.log(this.detallesConValores)
   }
 
   // carrito.component.ts
-inicializarCantidadesSeleccionadas() {
-  this.cantidadesSeleccionadas = {};
-  // Asegúrate de que carritos.detalle no es null o undefined antes de utilizar forEach
-  console.log(this.carritos.detalle + "ATENTO AQUI VERGA")
-  this.carritos.detalle?.forEach((detalle: any) => {
-    this.cantidadesSeleccionadas[detalle.id] = 0;
-  });
-}
+  inicializarCantidadesSeleccionadas() {
+    this.cantidadesSeleccionadas = {};
+    // Asegúrate de que carritos.detalle no es null o undefined antes de utilizar forEach
+    if (this.carritos.detalle) {
+      this.carritos.detalle.forEach((detalle: any) => {
+        this.cantidadesSeleccionadas[detalle.id] = 0;
+      });
+    }
+  }
+
+  actualizarTotalesGlobales() {
+    this.iva = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.iva, 0);
+    this.subtotal = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.subtotal, 0);
+    this.total = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.total, 0);
+  }
+  
 
 sumaTotales(): number {
   return (this.carritos.detalle as Detalle[])?.reduce((suma, detalle) => {

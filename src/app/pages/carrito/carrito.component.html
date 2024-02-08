@@ -10,6 +10,7 @@
         <div class="producto-info">
           <!-- Añade la etiqueta img para mostrar la imagen -->
           <img class="imagen-producto" [src]="detalle.producto.url" alt="Imagen del producto">
+          <p>ID {{detalle.producto.codigo}}</p>
           <p>Nombre del Producto: <span>{{ detalle.producto.nombre }}</span></p>
           <p>Precio: <span>{{ detalle.producto.precio | currency:'USD':'symbol' }}</span></p>
           <p>Iva: <span>{{ detalle.iva | currency:'USD':'symbol' }}</span></p>
@@ -29,7 +30,7 @@
     <div class="cabecera">
       <p>Subtotal: {{ sumaSubtotales() | currency:'USD':'symbol' }}</p>
       <p>IVA: {{ sumaIvas() | currency:'USD':'symbol' }}</p>
-      <p>Total: {{ sumaTotales() | currency:'USD':'symbol' }}</p>
+      <p>Total: {{ sumaSubtotales()  +sumaIvas() | currency:'USD':'symbol' }}</p>
     </div>
     <div class="botones-container">
       <button class="boton-pagar" (click)="crearCabeceraYAsignarADetalles()">Ir a Pagar</button>

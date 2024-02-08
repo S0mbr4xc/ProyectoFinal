@@ -26,9 +26,14 @@ export class CarritoServices {
         return this.http.post<any>(url, producto);
       }
 
-      crearCabeceraYAsignarADetalles(codigo: number, cabecera: Cabecera) {
-        const url = `${enviroment.WS_PATH}/carrito/cabeceraAdd/${codigo}`;
-        return this.http.post<any>(url, cabecera);
+      crearCabeceraYAsignarADetalles(codigo: number, personaID : any) {
+        const url = `${enviroment.WS_PATH}/carrito/cabeceraAdd/${codigo}/${personaID}`;
+        return this.http.post<any>(url, codigo);
+    }
+
+    eliminarCarrito(codigo:any){
+        let url = `${enviroment.WS_PATH}/carrito/eliminar-carrito/${codigo}`;
+        return this.http.post<any>(url,codigo)
     }
 
    

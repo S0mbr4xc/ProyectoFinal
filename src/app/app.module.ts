@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
+import { MostrarFacComponent } from './pages/mostrar-fac/mostrar-fac.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
     FooterComponent,
     TiendaComponent,
     LoginComponent,
-    CarritoComponent
+    CarritoComponent,
+    MostrarFacComponent
   ],
   imports: [
     BrowserModule,
