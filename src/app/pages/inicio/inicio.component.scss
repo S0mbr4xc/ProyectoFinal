@@ -25,9 +25,13 @@ h2 ,p{
   
 }
 
+.tarjeta h2{
+  font-size: 1.8em;
+}
+
 .tarjeta {
   flex: 0 0 auto; /* Las tarjetas no crecerán o encogerán, y serán automáticas en base a su contenido */
-  width: 390px; /* Ancho de las tarjetas */
+  width: 360px; /* Ancho de las tarjetas */
   height: 400px; /* Altura de las tarjetas */
   
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para las tarjetas */

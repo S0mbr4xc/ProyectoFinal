@@ -1,3 +1,15 @@
+.botones {
+  display: flex;
+  align-items: center;
+  
+}
+
+.botones button {
+  margin-right: 10px; /* Ajusta el margen entre los botones según sea necesario */
+  font-family: 'Black Ops One', system-ui;
+}
+
+
 .principio {
   display: flex;
   justify-content: space-between;
