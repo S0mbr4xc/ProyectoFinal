@@ -1,4 +1,11 @@
 /* Estilos Generales */
+
+/* Estilos para el contenedor de la tabla en el PDF */
+.container2 table, .container3 table {
+  max-height: 80vh; /* Establece el alto máximo al 80% del alto de la ventana */
+  overflow-y: auto; /* Agrega desplazamiento vertical si la tabla es más grande que el contenedor */
+}
+
 body {
   font-family: 'Black Ops One', system-ui;
   background-color: #f4f7f6;
@@ -8,6 +15,7 @@ body {
   margin: 0;
 }
 
+/* Contenedores */
 .container, .container2, .container3 {
   background: white;
   margin: 20px auto;
@@ -16,6 +24,7 @@ body {
   overflow: hidden;
 }
 
+/* Título */
 h1 {
   background-color: #60adff;
   color: white;
@@ -26,6 +35,7 @@ h1 {
   font-family: 'Black Ops One', system-ui;
 }
 
+/* Tablas */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -40,12 +50,14 @@ th, td {
   color: black;
 }
 
+/* Encabezados de tabla */
 th {
   background-color: #0055af;
   color: white;
   font-weight: bold;
 }
 
+/* Cambio de color al pasar el cursor */
 tr:hover {
   background-color: #f5f5f5;
 }
@@ -55,4 +67,3 @@ tr:hover {
   text-align: right;
 }
 
-/* Añadir más estilos según sea necesario */

@@ -21,6 +21,7 @@
           <input type="number" id="cantidad-{{detalle.id}}" [(ngModel)]="cantidadesSeleccionadas[detalle.id]" (change)="actualizarTotales(detalle)">
         </div>
         <div class="producto-total">
+          
           <p>Total: <span>{{ detalle.total | currency:'USD':'symbol' }}</span></p>
         </div>
       </div>
@@ -28,9 +29,9 @@
   </div>
   <div class="derecha">
     <div class="cabecera">
-      <p>Subtotal: {{ calcularSubtotalDetalles() | currency:'USD':'symbol' }}</p>
+      <p>Subtotal: {{ calcularTotalDetalles() | currency:'USD':'symbol' }}</p>
       <p>IVA: {{ calcularIVADetalles() | currency:'USD':'symbol' }}</p>
-      <p>Total: {{ calcularTotalDetalles() | currency:'USD':'symbol' }}</p>
+      <p>Total: {{ calcularTotalDetalles() + calcularIVADetalles()| currency:'USD':'symbol' }}</p>
     </div>
     <div class="botones-container">
       <button class="boton-pagar" (click)="crearCabeceraYAsignarADetalles() ; SetearCab()">Ir a Pagar</button>

@@ -1,60 +1,65 @@
-<div class="container">
-  <h1>FACTURA</h1>
-  <table>
-    <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Cédula</th>
-      <th>Correo</th>
-    </tr>
-    <!-- Verificar si es el primer detalle -->
-    <ng-container *ngFor="let det of detalles | async; let first = first">
-      <tr *ngIf="first">
-        <td>{{ det.cabecera.persona.nombre }}</td>
-        <td>{{ det.cabecera.persona.apellido }}</td>
-        <td>{{ det.cabecera.persona.cedula }}</td>
-        <td>{{ det.cabecera.persona.correo }}</td>
-      </tr>
-    </ng-container>
-  </table>
+<form id="frm">
+  <div class="container">
+      <h1>FACTURA</h1>
+      <table>
+          <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Cédula</th>
+              <th>Correo</th>
+          </tr>
+          <!-- Verificar si es el primer detalle -->
+          <ng-container *ngFor="let det of detalles | async; let first = first">
+              <tr *ngIf="first">
+                  <td>{{ det.cabecera.persona.nombre }}</td>
+                  <td>{{ det.cabecera.persona.apellido }}</td>
+                  <td>{{ det.cabecera.persona.cedula }}</td>
+                  <td>{{ det.cabecera.persona.correo }}</td>
+              </tr>
+          </ng-container>
+      </table>
+  </div>
+
+  <!-- Mostrar los detalles -->
+  <div class="container2">
+      <table>
+          <tr>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Iva</th>
+              <th>Subtotal</th>
+              <th>Total</th>
+          </tr>
+          <tr *ngFor="let det of detalles | async">
+              <td>{{ det.producto.nombre }}</td>
+              <td>{{ det.cantidad }}</td>
+              <td>{{ det.iva }}</td>
+              <td>{{ det.subtotal }}</td>
+              <td>{{ det.total }}</td>
+             
+          </tr>
+      </table>
+  </div>
+
+  <!-- Mostrar totales -->
+  
+  <div class="container3">
+    <table>
+        <tr>
+            <th>Subtotal</th>
+            <th>Impuestos</th>
+            <th>Total a Pagar</th>
+        </tr>
+        <ng-container *ngFor="let det of detalles | async; let first = first">
+            <tr *ngIf="first">
+                <td>{{ det.cabecera.subtotal}}</td>
+                <td>{{ det.cabecera.iva}}</td>
+                <td>{{ det.cabecera.total}}</td>
+            </tr>
+        </ng-container>
+    </table>
 </div>
 
-<!-- Mostrar los detalles -->
-<div class="container2">
-  <table>
-    <tr>
-      <th>Nombre</th>
-      <th>Cantidad</th>
-      <th>Presio</th>
-      <th>Iva</th>
-      <th>Subtotal</th>
-      <th>Total</th>
-    </tr>
-    <tr *ngFor="let det of detalles | async">
-      <td>{{ det.producto.nombre }}</td>
-      <td>{{ det.cantidad }}</td>
-      <td>{{ det.producto.precio }}</td>
-      <td>{{ det.iva }}</td>
-      <td>{{ det.subtotal }}</td>
-      <td>{{ det.total }}</td>
-    </tr>
-  </table>
-</div>
+</form>
 
-<!-- Mostrar totales -->
-<div class="container3">
-  <table>
-    <tr>
-      <th>Subtotal</th>
-      <th>Impuestos</th>
-      <th>Total a Pagar</th>
-    </tr>
-    <ng-container *ngFor="let det of detalles | async; let first = first">
-      <tr *ngIf="first">
-        <td>{{ det.cabecera.subtotal}}</td>
-        <td>{{ det.cabecera.iva}}</td>
-        <td>{{ det.cabecera.total}}</td>
-      </tr>
-    </ng-container>
-  </table>
-</div>
+<button (click)="imprimir()">Imprimir Factura</button>

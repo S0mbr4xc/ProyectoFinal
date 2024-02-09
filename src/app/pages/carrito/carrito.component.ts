@@ -136,12 +136,13 @@ export class CarritoComponent implements OnInit{
   // Actualiza las cantidades y totales
   actualizarTotales(detalle: any) {
     const cantidadSeleccionada = this.cantidadesSeleccionadas[detalle.id] || 0;
+    const subtotal = detalle.producto.precio;
     const iva = detalle.producto.precio * 0.12;
-    const subtotal = detalle.producto.precio + iva;
     const total = subtotal * cantidadSeleccionada;
+    const iva2 = iva*cantidadSeleccionada
   
     // Actualiza solo el detalle específico
-    detalle.iva = iva;
+    detalle.iva = iva2;
     detalle.subtotal = subtotal;
     detalle.total = total;
     console.log(cantidadSeleccionada)
@@ -166,6 +167,7 @@ export class CarritoComponent implements OnInit{
     console.log(this.detallesConValores)
   }
 
+  
   // carrito.component.ts
   inicializarCantidadesSeleccionadas() {
     this.cantidadesSeleccionadas = {};
@@ -178,9 +180,22 @@ export class CarritoComponent implements OnInit{
   }
 
   actualizarTotalesGlobales() {
-    this.iva = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.iva, 0);
-    this.subtotal = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.subtotal, 0);
-    this.total = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.total, 0);
+    if (this.carritos && this.carritos.detalle && this.carritos.detalle.length > 0) {
+      this.subtotal = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.subtotal * this.cantidad, 0);
+      this.total = this.carritos.detalle.reduce((suma: number, detalle: any) => suma + detalle.total, 0);
+  
+      // Recalcular el IVATOTAL sumando los IVAs de todos los detalles multiplicados por la cantidad seleccionada
+      this.iva = this.carritos.detalle.reduce((suma: number, detalle: any) => {
+        // Suma el IVA del detalle multiplicado por la cantidad seleccionada
+        suma += detalle.iva * (this.cantidadesSeleccionadas[detalle.id] || 0);
+        return suma;
+      }, 0);
+    } else {
+      // Si no hay detalles, establece los totales en 0
+      this.subtotal = 0;
+      this.total = 0;
+      this.iva = 0;
+    }
   }
   
 

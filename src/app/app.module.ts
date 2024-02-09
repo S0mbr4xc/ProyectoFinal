@@ -14,6 +14,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { MostrarFacComponent } from './pages/mostrar-fac/mostrar-fac.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,12 +26,14 @@ import { MostrarFacComponent } from './pages/mostrar-fac/mostrar-fac.component';
     LoginComponent,
     CarritoComponent,
     MostrarFacComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
