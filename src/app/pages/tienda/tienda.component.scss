@@ -1,150 +1,360 @@
-/* Estilos generales */
-.lista-tareas {
-    text-align: center;
-    padding: 20px;
-    margin: 0;
+/* Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f2f5;
+}
+
+.lista-tareas, .informacion-adicional {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.lista-tareas h2{
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+
+.h2, .informacion-tarea h3, .detalle-producto h2, .sobre-el-articulo h3 {
+  color: #333;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+/* Card & Detail View Improvements */
+.tareas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.imagenes-producto {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crea dos columnas */
+  gap: 10px; /* Espacio entre las imágenes */
+  max-width: 600px; /* O ajusta según el ancho deseado */
+  margin: auto; /* Centra la cuadrícula horizontalmente */
+}
+
+.imagen-producto {
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 1 / 1; /* Mantiene las imágenes cuadradas, ajusta según necesidad */
+}
+
+/* Ajustes responsivos para pantallas más pequeñas si es necesario */
+@media (max-width: 768px) {
+  .imagenes-producto {
+    grid-template-columns: 1fr; /* En pantallas pequeñas, coloca las imágenes en una sola columna */
+    gap: 5px;
   }
-  
-  .lista-tareas h2 {
-    font-size: 1.9rem;
-    margin-bottom: 20px;
-    color: #333;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  }
-  
+}
+
+
+.tarea, .imagen-producto {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.tarea:hover, .imagen-producto:hover {
+  transform: scale(1.03);
+}
+
+.imagen-tarea, .imagen-producto {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.info-btn, .boton-comprar, .boton-carrito {
+  display: inline-block;
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.info-btn:hover, .boton-comprar:hover, .boton-carrito:hover {
+  background: linear-gradient(45deg, #0056b3, #003875);
+}
+
+/* Close Button */
+.cerrar {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.cerrar:hover {
+  background-color: #b0b0b0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
   .tareas-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Organiza las tareas en columnas responsivas */
-    gap: 20px; /* Espacio entre las tareas */
-  }
-  
-  .tarea {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .imagen-tarea {
-    background-size: cover;
-    background-position: center;
-    height: 200px;
-  }
-  
-  .informacion-tarea h3 {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  }
-  
-  .informacion-tarea p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-    color: #777;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  
-  /* Estilos para botones */
-  button, #archivo, .boton-personalizado {
-    background-color: rgb(135, 187, 255);
-    color: #000000; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer;
-    width: 100%; /* Ancho 100% en pantallas pequeñas */
-    height: 55px;
-    margin-top: 15px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1em;
-  }
-  
-  /* Media Query para pantallas más pequeñas */
-  @media only screen and (max-width: 768px) {
-    .tareas-container {
-      grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas pequeñas */
-    }
+    grid-template-columns: 1fr;
   }
 
- /* Estilos para la sección de información adicional */
-.informacion-adicional {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  /* Estilos para las imágenes del producto */
-  .imagenes-producto {
-    width: 60%;
-    height: 80vh;
-    display: flex;
-    flex-wrap: wrap; /* Asegura que las imágenes se envuelvan en una fila */
-  }
-  
-  .imagen-producto {
-    width: 48%; /* Ajusta el ancho según sea necesario */
-    height: 48vh; /* Ajusta la altura según sea necesario */
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 10px;
+  .informacion-adicional, .detalle-producto, .imagenes-producto {
+    display: block;
   }
 
   .imagen-fila {
-    width: 100%; /* Ocupa todo el ancho de la fila */
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
-  
-  /* Estilos para los detalles del producto */
-  .detalle-producto {
-    width: 35%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lista-tareas, .informacion-adicional {
+  animation: fadeIn 0.5s ease-out;
+}
+/* Enhanced Hover Effects for Product Cards */
+.tarea:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* Dynamic Text Shadows for Emphasis */
+.lista-tareas h2, .informacion-tarea h3, .detalle-producto h2 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Button Enhancements with Shadows and Transitions */
+.info-btn, .boton-comprar, .boton-carrito {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.info-btn:hover, .boton-comprar:hover, .boton-carrito:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Gradient Backgrounds for Enhanced Visual Appeal */
+body {
+  background-image: linear-gradient(to bottom right, #f0f6fc, #a1c4fd);
+}
+
+/* Subtle Animation for Background Change on Button Hover */
+.boton-comprar:hover, .boton-carrito:hover {
+  animation: pulseBackground 2s infinite alternate;
+}
+
+@keyframes pulseBackground {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .detalle-producto h2 {
-    font-size: 24px;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .detalle-producto p {
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Soft Fade-in Effect for Product Images */
+.imagen-tarea, .imagen-producto {
+  animation: softFadeIn 1s ease-out;
+}
+
+@keyframes softFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Decorative Details */
+.lista-tareas, .informacion-adicional {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.lista-tareas::before, .informacion-adicional::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 5px;
+  background: linear-gradient(to right, #007bff, #ff5e14);
+}
+
+/* Styling List Items with Icons */
+.sobre-el-articulo ul li {
+  list-style: none;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+}
+
+.sobre-el-articulo ul li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: #007bff; /* Match your theme */
+}
+
+/* Improved Responsiveness for Better Mobile Experience */
+@media (max-width: 480px) {
+  .tareas-container {
+    display: block;
+  }
+
+  .tarea {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .imagenes-producto .imagen-fila {
+    display: block;
+  }
+
+  .imagen-producto {
     margin-bottom: 10px;
   }
-  
-  /* Estilos para los botones de acción */
-  .acciones button {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px;
-    margin-right: 10px;
-    border: none;
-    cursor: pointer;
+
+  .acciones {
+    flex-direction: column;
   }
-  
-  /* Estilos para la lista de descripciones del artículo */
-  .sobre-el-articulo {
-    margin-top: 20px;
-  }
-  
-  .sobre-el-articulo h3 {
-    font-size: 18px;
+
+  .boton-comprar, .boton-carrito {
+    width: 100%;
     margin-bottom: 10px;
   }
-  
-  .sobre-el-articulo ul {
-    list-style: none;
-    padding: 0;
+}
+
+/* Suavizando las Transiciones Globales */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Efecto de Hover Elegante para las Tarjetas de Productos */
+.tarea {
+  position: relative;
+  overflow: hidden;
+}
+
+.tarea::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  pointer-events: none;
+  transition: left 0.5s ease;
+}
+
+.tarea:hover::after {
+  left: 0;
+}
+
+/* Animación Sutil para Botones al Pasar el Ratón */
+.info-btn, .boton-comprar, .boton-carrito {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-btn:hover, .boton-comprar:hover, .boton-carrito:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animación de 'Pulso' para Botones */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
-  .sobre-el-articulo li {
-    margin-bottom: 5px;
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   }
-  
-  /* Estilos para el botón de cerrar */
-  .informacion-adicional button:last-child {
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
-  
+}
+
+.boton-comprar:focus, .boton-carrito:focus {
+  animation: pulse 1s infinite;
+}
+
+/* Mejoras en la Visualización de Imágenes */
+.imagen-producto:hover {
+  filter: brightness(1.1);
+}
+
+/* Fondo Dinámico para .lista-tareas y .informacion-adicional */
+.lista-tareas, .informacion-adicional {
+  background: linear-gradient(to right, #ffffff, #f7f8fa);
+  box-shadow: 0 8px 10px rgba(0,0,0,0.1);
+}
+
+/* Estilo Refinado para Detalles del Producto */
+.detalle-producto, .sobre-el-articulo {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Resaltando Títulos y Textos Importantes */
+.lista-tareas h2, .detalle-producto h2, .sobre-el-articulo h3 {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Animación para la Aparición de Información Adicional */
+.informacion-adicional {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilizando la Paginación */
+.paginacion {
+  text-align: center;
+  padding: 20px;
+}
+
+.paginacion a {
+  color: #007bff;
+  margin: 0 5px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.paginacion a:hover {
+  text-decoration: underline;
+}
+

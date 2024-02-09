@@ -1,69 +1,287 @@
-/* Estilos Generales */
+/* Reset básico para estilos */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* Estilos para el contenedor de la tabla en el PDF */
-.container2 table, .container3 table {
-  max-height: 80vh; /* Establece el alto máximo al 80% del alto de la ventana */
-  overflow-y: auto; /* Agrega desplazamiento vertical si la tabla es más grande que el contenedor */
+
+/* Mejoras Generales */
+body {
+  background-color: #e9ecef;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.factura {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.factura:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Encabezado de la Factura */
+.factura-header h1 {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 2rem;
+}
+
+.factura-header button {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 0.375rem 0.75rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Estilos de Tabla */
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+th, td {
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  text-align: left;
+  border-bottom: 2px solid #dee2e6;
+}
+
+th {
+  background-color: #007bff;
+  color: #ffffff;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+tr:hover td {
+  background-color: #e9ecef;
+}
+
+/* Detalles y Totales */
+.factura-info, .factura-detalle, .factura-totales {
+  font-size: 0.9rem;
+}
+
+/* Botones con Efecto Gradiente */
+button {
+  background-image: linear-gradient(45deg, #49a6e9, #3178c6);
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.375rem;
+}
+
+button:hover {
+  background-image: linear-gradient(45deg, #3178c6, #49a6e9);
+}
+
+/* Mejoras en Responsividad */
+@media (max-width: 768px) {
+  .factura {
+    padding: 0.5rem;
+  }
+
+  .factura-header h1 {
+    font-size: 1.5rem;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+}
+
+/* Animación para el fondo del cuerpo */
+@keyframes bodyFade {
+  0% {
+    background-color: #e9ecef;
+  }
+  100% {
+    background-color: #f8f9fa;
+  }
 }
 
 body {
-  font-family: 'Black Ops One', system-ui;
-  background-color: #f4f7f6;
-  color: #808080;
-  line-height: 1.6;
-  padding: 20px;
-  margin: 0;
+  animation: bodyFade 1s ease-out;
 }
 
-/* Contenedores */
-.container, .container2, .container3 {
-  background: white;
-  margin: 20px auto;
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.factura {
+  background: #FFF;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(255, 234, 234, 0.1);
   overflow: hidden;
-}
-
-/* Título */
-h1 {
-  background-color: #60adff;
-  color: white;
+  max-width: 800px;
+  margin: 20px auto;
   padding: 20px;
-  margin: 0 0 20px 0;
-  text-align: center;
-  font-weight: normal;
-  font-family: 'Black Ops One', system-ui;
 }
 
-/* Tablas */
+.factura-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.factura-header h1 {
+  color: #007bff;
+}
+
+.factura-header button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.factura-header button:hover {
+  background-color: #0056b3;
+}
+
+.factura-info, .factura-detalle, .factura-totales {
+  margin-bottom: 20px;
+}
+
+.factura-info h2, .factura-detalle h2, .factura-totales h2 {
+  border-bottom: 2px solid #007bff;
+  color: #333;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
 }
 
 th, td {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid #ddd;
-  font-family: 'Gaegu', sans-serif;
-  color: black;
 }
 
-/* Encabezados de tabla */
 th {
-  background-color: #0055af;
+  background-color: #007bff;
   color: white;
+}
+
+/* Mejoras en los totales para destacar */
+.factura-totales th, .factura-totales td {
   font-weight: bold;
-}
-
-/* Cambio de color al pasar el cursor */
-tr:hover {
-  background-color: #f5f5f5;
-}
-
-/* Estilos específicos para los totales */
-.container3 th, .container3 td {
   text-align: right;
+  background-color: #005279;
 }
+
+@media print {
+  body {
+    background-color: #fff;
+  }
+  
+  .factura {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Animación de Entrada para la Factura */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.factura {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Efecto Hover Sutil para las Filas de la Tabla */
+table tr:not(:first-child):hover {
+  background-color: #f0f0f0;
+}
+
+/* Mejoras en Tipografía para Títulos y Contenido */
+h1, h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #0056b3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para Links (si aplicable dentro de la factura) */
+a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Estilización de Inputs y Selects (si aplicable) */
+input[type="text"], input[type="number"], select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  margin: 5px 0 15px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Estilos para Botones Secundarios (si necesitas agregar más botones) */
+button.secondary {
+  background-color: #6c757d;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button.secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Sombra para la Cabecera y Totales para Mayor Profundidad */
+.factura-header, .factura-totales {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Detalles Visuales para Inputs */
+input[type="number"] {
+  transition: all 0.25s ease-in-out;
+}
+
+input[type="number"]:hover {
+  transform: scale(1.05);
+}
+
 

@@ -1,63 +1,46 @@
-
-  <div class="lista-tareas" *ngIf="mostrarListaProductos">
-    <h2>Todos los Productos</h2>
-    <div class="tareas-container">
-      <div *ngFor="let tarea of productos | async" class="tarea">
-        <div class="imagen-tarea" [style.backgroundImage]="'url('+tarea.url+')'" >
-        </div>
-        <div class="informacion-tarea">
-          <h3>{{ tarea.nombre }}</h3>
-          <p><strong>Categoria:</strong> {{ tarea.categoria.nombre}}</p>
-          
-          <!-- Botón para mostrar información adicional -->
-          <button (click)="mostrarInformacionAdicional(tarea)">+ info</button>
-          
-        </div>
+<div class="lista-tareas" *ngIf="mostrarListaProductos">
+  <h2>Todos los Productos</h2>
+  <div class="tareas-container">
+    <div *ngFor="let tarea of productos | async" class="tarea">
+      <div class="imagen-tarea" [ngStyle]="{'background-image': 'url(' + tarea.url + ')'}"></div>
+      <div class="informacion-tarea">
+        <h3>{{ tarea.nombre }}</h3>
+        <p><strong>Categoria:</strong> {{ tarea.categoria.nombre }}</p>
+        <button class="info-btn" (click)="mostrarInformacionAdicional(tarea)">+ info</button>
       </div>
     </div>
   </div>
-  
-  <div *ngIf="mostrarInfoAdicional" class="informacion-adicional">
-    <div class="imagenes-producto">
-      <!-- Organiza las 4 imágenes en una cuadrícula de 2x2 -->
-      <div class="imagen-fila">
-        <div class="imagen-producto" [style.backgroundImage]="'url(' + productoSeleccionado.url1 + ')'"></div>
-        <div class="imagen-producto" [style.backgroundImage]="'url(' + productoSeleccionado.url2 + ')'"></div>
+</div>
 
-      </div>
-      <div class="imagen-fila">
-        <div class="imagen-producto" [style.backgroundImage]="'url(' + productoSeleccionado.url3 + ')'"></div>
-        <div class="imagen-producto" [style.backgroundImage]="'url(' + productoSeleccionado.url4 + ')'"></div>
-
-      </div>
+<div *ngIf="mostrarInfoAdicional" class="informacion-adicional">
+  <div class="cerrar" (click)="ocultarInformacionAdicional()">X</div> <!-- Add a close button -->
+  <div class="imagenes-producto">
+    <!-- Images in a 2x2 grid -->
+    <div class="imagen-fila">
+      <div class="imagen-producto" [ngStyle]="{'background-image': 'url(' + productoSeleccionado.url1 + ')'}"></div>
+      <div class="imagen-producto" [ngStyle]="{'background-image': 'url(' + productoSeleccionado.url2 + ')'}"></div>
     </div>
-    
-    <div class="detalle-producto">
-      <!-- Detalles del producto -->
-      <h2>{{ productoSeleccionado.nombre }}</h2>
-      <p><strong>Precio:</strong> {{ productoSeleccionado.precio | currency:'USD':'symbol' }}</p>
-      <p><strong>Descripción:</strong> {{ productoSeleccionado.descripcion }}</p>
-      
-      <!-- Botones de acción -->
-      <div class="acciones">
-        <button class="boton-comprar">Comprar Ahora</button>
-        <button class="boton-carrito" (click)="agregarAlCarrito(productoSeleccionado)">Añadir a Carrito</button>
-      </div>
-      
-      <!-- Sobre el artículo -->
-      <div class="sobre-el-articulo">
-        <h3>Sobre el Artículo</h3>
-        <ul>
-          <!-- Lista de descripciones del artículo -->
-          <li>Descripción 1</li>
-          <li>Descripción 2</li>
-          <li>Descripción 3</li>
-          <!-- Agrega más descripciones según sea necesario -->
-        </ul>
-      </div>
+    <div class="imagen-fila">
+      <div class="imagen-producto" [ngStyle]="{'background-image': 'url(' + productoSeleccionado.url3 + ')'}"></div>
+      <div class="imagen-producto" [ngStyle]="{'background-image': 'url(' + productoSeleccionado.url4 + ')'}"></div>
     </div>
-    
-    <!-- Botón para ocultar la información adicional y mostrar la lista de productos -->
-    
   </div>
-  
+
+  <div class="detalle-producto">
+    <h2>{{ productoSeleccionado.nombre }}</h2>
+    <p><strong>Precio:</strong> {{ productoSeleccionado.precio | currency:'USD':'symbol-narrow' }}</p>
+    <p><strong>Descripción:</strong> {{ productoSeleccionado.descripcion }}</p>
+    <div class="acciones">
+      <button class="boton-comprar">Comprar Ahora</button>
+      <button class="boton-carrito" (click)="agregarAlCarrito(productoSeleccionado)">Añadir a Carrito</button>
+    </div>
+    <div class="sobre-el-articulo">
+      <h3>Sobre el Artículo</h3>
+      <ul>
+        <li>Descripción 1</li>
+        <li>Descripción 2</li>
+        <li>Descripción 3</li>
+      </ul>
+    </div>
+  </div>
+</div>
