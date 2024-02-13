@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Persona } from 'src/app/domain/persona';
 import { AuthService } from 'src/app/services/auth-service';
 import { LoginServices } from 'src/app/services/login-services';
+import { Route, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { every } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +16,18 @@ export class LoginComponent {
   email: any
   password: any
   per : Persona = new Persona()
-  constructor(private loginServices : LoginServices, private authService : AuthService){}
+
+
+  constructor(private loginServices : LoginServices, private authService : AuthService, private router: Router){}
+
+  paginas = [
+    {titulo: "Tienda", path: "paginas/tienda"}
+  ]
+
   mostrarFormularioRegistro(event: Event) {
     event.preventDefault();  // Evita el comportamiento predeterminado del enlace
     this.mostrarRegistro = true;
+
   }
 
   mostrarFormularioLogin(event: Event) {
@@ -31,6 +42,7 @@ export class LoginComponent {
           .subscribe(response => {
             alert("INGRESADO");
             this.authService.setUsuarioAutenticado(response);
+            this.router.navigate(["paginas/tienda"])
           }, error => {
             console.error(error);
             alert("ERROR");
@@ -50,6 +62,7 @@ export class LoginComponent {
     if(this.validarCamposRegister()){
     this.authService.crearPersona(this.per).subscribe(response =>{
       alert("Ingreso exitosamente")
+      this.mostrarRegistro = false;
       this.authService.setUsuarioAutenticado(response)
     }, error =>{
       alert("No se ha ingresado")

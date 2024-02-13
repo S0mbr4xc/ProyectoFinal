@@ -1,3 +1,3 @@
 export const enviroment = {
-    WS_PATH: 'http://localhost:18080/PFinal/rs'
+    WS_PATH: 'http://localhost:8080/PFinal/rs'
 };

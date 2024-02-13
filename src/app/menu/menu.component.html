@@ -4,11 +4,11 @@
     <p>E-MARKET</p>
     <div class="botones">
       <button (click)="irCarrito()">Carrito</button>
-      <button (click)="toggleInfoUsuario()">Cuenta</button>
+      <button (mouseenter)="toggleInfoUsuario()">Cuenta</button>
     </div>
     <div class="info-usuario" *ngIf="mostrarInfoUsuario" (mouseleave)="toggleInfoUsuario()">
       <p>Has iniciado sesión como: {{ obtenerUsuarioAutenticado().correo }}</p>
-      <button (click)="irLogin()">Iniciar Sesión</button>
+      <button (click)="irLogin()" >Iniciar Sesión</button>
       <button (click)="cerrarSesion()">Cerrar Sesión</button>
     </div>
   </div>

@@ -79,6 +79,7 @@ mostrarRegistro() {
     return this.authService.estaAutenticado();
   }
 
+
   cerrarSesion(){
     return this.authService.cerrarSesion()
   }
