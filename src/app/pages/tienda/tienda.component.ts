@@ -27,7 +27,6 @@ productosSeleccionados: Producto[] = [];
   constructor(private categoriaService : TiendaServices, private carritoServices : CarritoServices, private authService : AuthService){}
 
   ngOnInit():void{
-    
     this.productos = this.categoriaService.getProductosAll()
   }
 

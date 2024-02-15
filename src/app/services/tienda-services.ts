@@ -17,4 +17,9 @@ export class TiendaServices {
         let url = enviroment.WS_PATH + "/productos/list"
         return this.http.get<any>(url)
     }
+
+    getProductosCat(cat: any){
+        let url = `${enviroment.WS_PATH}/productos/list/${cat}`;
+        return this.http.get<any>(url)
+    }
 }

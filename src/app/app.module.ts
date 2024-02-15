@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -13,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { MostrarFacComponent } from './pages/mostrar-fac/mostrar-fac.component';
-
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
 
 @NgModule({
   declarations: [
@@ -33,6 +33,12 @@ import { MostrarFacComponent } from './pages/mostrar-fac/mostrar-fac.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     
   ],
   providers: [],

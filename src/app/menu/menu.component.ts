@@ -26,7 +26,6 @@ export class MenuComponent {
     {titulo: "Tienda", path: "paginas/tienda"}
   ]
 
- 
 
   ngOnInit(): void {
     this.tiendaServices.getCategorias().subscribe(
