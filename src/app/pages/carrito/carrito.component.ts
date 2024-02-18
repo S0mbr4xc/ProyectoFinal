@@ -257,5 +257,22 @@ calcularIVADetalles(): number {
   return ivaDetalles;
 }
 
+eliminarProducto(){
+
+}
+
+eliminarProductoCarrito(detalle : any){
+  this.carritoServices.eliminarProductoCarrito(this.authService.getUsuarioAutenticado().codigo, detalle.producto.codigo).subscribe(response =>{
+    console.log("eliminado xd")
+    alert("ELIMIANDO DEL CARRITO")
+    this.router.navigate(['paginas/carrito'])
+  }, 
+  error => {
+    console.error("Error al eliminar productos del c arritos:", error);
+    // Maneja el error según sea necesario
+    this.router.navigate(['paginas/carrito'])
+  }
+  )
+}
 
 }

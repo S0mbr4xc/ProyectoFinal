@@ -72,3 +72,21 @@ footer {
     text-decoration: underline;
   }
   
+  @media (max-width: 768px) {
+    .footer-container, .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section, .footer-bottom ul {
+        text-align: center;
+    }
+
+    .footer-section ul li, .footer-bottom ul li {
+        margin-right: 0; /* Elimina el margen derecho para alinear correctamente */
+    }
+
+    .footer-bottom p, .footer-bottom ul li a {
+        font-size: 10px; /* Reduce el tamaño de la fuente para ahorrar espacio */
+    }
+  }

@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "examenfinal-dc22c",
     "source": ".",
     "ignore": [
       "firebase.json",

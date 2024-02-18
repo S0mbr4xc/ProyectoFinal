@@ -165,3 +165,48 @@ display: block;
 #siteSearch::placeholder {
   color: #5f6368;
 }
+
+@media (max-width: 768px) {
+  .botones,
+  .principio,
+  nav {
+    flex-direction: column;
+  }
+
+  .info-usuario {
+    width: 90%; /* Ajusta para dejar un pequeño margen */
+    position: static; /* Puede ser necesario ajustar la posición en móviles */
+  }
+
+  p,
+  header button,
+  header li {
+    font-size: smaller;
+  }
+
+  header ul {
+    flex-direction: column;
+    margin-right: 0; /* Elimina el margen entre elementos de la lista */
+  }
+
+  header li {
+    margin-right: 0; /* Ajusta el margen para móviles */
+  }
+
+  .submenu {
+    left: 50%;
+    transform: translateX(-50%); /* Centra el submenú bajo su padre */
+  }
+}
+
+@media (max-width: 480px) {
+  .info-usuario {
+    /* Ajustes adicionales específicos para teléfonos móviles */
+    width: 100%;
+  }
+
+  header li a,
+  .submenu a {
+    font-size: smaller; /* Ajusta el tamaño de la fuente para una mejor legibilidad */
+  }
+}

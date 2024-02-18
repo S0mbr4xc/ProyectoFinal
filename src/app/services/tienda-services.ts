@@ -22,4 +22,10 @@ export class TiendaServices {
         let url = `${enviroment.WS_PATH}/productos/list/${cat}`;
         return this.http.get<any>(url)
     }
+
+    getProductosNombre(nombre: any){
+        let url = `${enviroment.WS_PATH}/productos/list/${nombre}`;
+        return this.http.get<any>(url)
+    }
+    
 }

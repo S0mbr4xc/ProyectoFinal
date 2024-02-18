@@ -18,7 +18,8 @@
         </div>
         <div class="producto-cantidad">
           <label for="cantidad-{{detalle.id}}">Cantidad:</label>
-          <input type="number" id="cantidad-{{detalle.id}}" [(ngModel)]="cantidadesSeleccionadas[detalle.id]" (change)="actualizarTotales(detalle)">
+          <input type="number" min="1" [value]="1" id="cantidad-{{detalle.id}}" [(ngModel)]="cantidadesSeleccionadas[detalle.id]" (change)="actualizarTotales(detalle)">
+          <button class="boton-pagar" (click)="eliminarProductoCarrito(detalle)">Eliminar</button>
         </div>
         <div class="producto-total">
           

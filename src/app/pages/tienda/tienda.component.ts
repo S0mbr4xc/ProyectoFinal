@@ -16,9 +16,13 @@ export class TiendaComponent implements OnInit {
   mostrarListaProductos: boolean = true;
   mostrarInfoAdicional: boolean = false;
   // Dentro de tu componente
-productosSeleccionados: Producto[] = [];
+  productosSeleccionados: Producto[] = [];
+  productosFiltrados: any
+  terminoDeBusqueda: string = '';
 
 
+
+  
   // Variable para almacenar el producto seleccionado
   productoSeleccionado: any;  // Ajust
   cat : Categoria = new Categoria()
@@ -28,11 +32,19 @@ productosSeleccionados: Producto[] = [];
 
   ngOnInit():void{
     this.productos = this.categoriaService.getProductosAll()
+    this.productosFiltrados = this.categoriaService.getProductosAll()
+  }
+
+  filtrarProductos(): void {
+    this.productosFiltrados = this.productos.filter((producto : any) =>
+      producto.nombre.toLowerCase().includes(this.terminoDeBusqueda.toLowerCase())
+    );
   }
 
   personaAutenticada = this.authService.getUsuarioAutenticado().correo
   codigoAutenticada = this.authService.getUsuarioAutenticado().codigo
 
+  
 
   mostrarInformacionAdicional(producto: any) {
     this.productoSeleccionado = producto;
@@ -46,6 +58,8 @@ productosSeleccionados: Producto[] = [];
     this.productoSeleccionado = null;
     this.mostrarListaProductos = true;
   }
+
+  
 
   agregarAlCarrito(producto: Producto) {
     this.productosSeleccionados.push(producto);
@@ -61,6 +75,10 @@ productosSeleccionados: Producto[] = [];
       }
     );
 
+  }
+
+  setProductos(productos: any){
+    this.productos = productos
   }
   
 }

@@ -46,5 +46,10 @@ export class CarritoServices {
         CarritoServices.codigoCabecera = codigo;
       }
 
+    eliminarProductoCarrito(codigo : any, productoID : any){
+        let url =`${enviroment.WS_PATH}/carrito/eliminar/${codigo}/${productoID}`;
+        return this.http.delete<any>(url, codigo)
+    }
+
    
 }

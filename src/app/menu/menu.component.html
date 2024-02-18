@@ -19,13 +19,17 @@
               (mouseenter)="link.titulo === 'Tienda' ? mostrarListaCategorias() : null" 
               (mouseleave)="ocultarListaCategorias()">
               <a href="#" [routerLink]="link.path">{{ link.titulo }}</a>
-
+              
               <!-- Aplica la lógica solo para el elemento "Tienda" -->
               <ul *ngIf="mostrarCategorias && link.titulo === 'Tienda'" class="submenu">
                   <li *ngFor="let categoria of categorias">
                       <a href="#" [routerLink]="'/categoria/' + categoria.codigo">{{ categoria.nombre }}</a>
                   </li>
+                  
               </ul>
+          </li>
+          <li>
+            <a href="https://wa.me/593998663179">Servicio al cliente</a>
           </li>
       </ul>
         <form id="searchForm">
@@ -44,6 +48,7 @@
                     }
                     </style>
             <input type="search" id="siteSearch" name="q" placeholder="Busca productos" aria-label="Buscar productos">
+            <button>Buscar</button>
 
           </form>
   </nav>

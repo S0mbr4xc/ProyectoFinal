@@ -3,6 +3,7 @@ import { Categoria } from '../domain/categoria';
 import { TiendaServices } from '../services/tienda-services';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../services/auth-service';
+import { TiendaComponent } from '../pages/tienda/tienda.component'; 
 
 @Component({
   selector: 'app-menu',
@@ -22,7 +23,6 @@ export class MenuComponent {
   constructor(private tiendaServices : TiendaServices, private router : Router, private authService : AuthService){}
   paginas = [
     {titulo: "Inicio", path: 'paginas/inicio'},
-    {titulo: "Servicio al Cliente", path: 'paginas/servicio-cliente'},
     {titulo: "Tienda", path: "paginas/tienda"}
   ]
 
@@ -89,6 +89,11 @@ mostrarRegistro() {
 
   irCarrito(){
     this.router.navigate(["paginas/carrito"])
+  }
+
+  buscar(nombre:any){
+    this.tiendaServices.getProductosNombre(nombre)
+
   }
 
 }
